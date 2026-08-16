@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#007bff">
+    <meta name="description" content="DJ WILMER EN VIVO - Radio en vivo las 24 horas. Escúchala desde tu dispositivo.">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="DJ Wilmer">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>DJ WILMER EN VIVO</title>
+</head>
+<body>
+
+    <!-- Partículas de fondo -->
+    <div id="particles" aria-hidden="true"></div>
+
+    <!-- Encabezado fijo -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <span id="logo-text">🎧 DJ WILMER</span>
+            <span id="hora-actual">00:00</span>
+        </div>
+    </div>
+    <button id="menu-toggle" aria-label="Menú" class="menu-btn"><i class="fas fa-bars"></i></button>
+    <button id="boton-compartir" aria-label="Compartir" class="share-btn">
+        <img src="icons/icon-192.png" alt="Compartir" class="share-icon-img">
+    </button>
+    <div class="live-badge">🔴 EN VIVO</div>
+
+    <div id="app-pwa">
+        <header>
+            <div id="station-info" class="station-card" style="background:url('icons/icon-512.png') center/cover no-repeat">
+                <div class="blur-bg"></div>
+                <img alt="Station Logo" class="rotate-logo" id="station-logo" src="icons/icon-512.png">
+                <div id="now-playing">
+                    <h2 id="track-title">DJ WILMER EN VIVO</h2>
+                    <p id="track-artist"></p>
+                    
+                    <!-- Ecualizador -->
+                    <div class="equalizer" id="equalizer" aria-hidden="true">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Reproductor flotante -->
+        <div class="floating-player" id="floating-player">
+            <div class="player-content">
+                <img alt="Station Logo" class="rotate-logo" id="floating-logo" src="icons/icon-512.png">
+                <div class="player-details">
+                    <h3 id="floating-track-title">DJ WILMER EN VIVO</h3>
+                    <p id="metadata">🎵 Esperando metadata...</p>
+                </div>
+                <div class="player-controls">
+                    <button id="floating-play-pause-btn" title="Reproducir/Pausar">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <input id="floating-volume-slider" type="range" min="0" max="100" value="50">
+                </div>
+            </div>
+        </div>
+
+        <div class="station-list" id="station-list"></div>
+    </div>
+
+    <!-- Redes sociales -->
+    <div id="social-icons">
+        <a class="social-icon facebook" href="https://web.facebook.com/DJCHOCHOBARWILMER" target="_blank" rel="noopener">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="social-icon twitter" href="https://api.whatsapp.com/send?phone=5198634177&text=%F0%9F%99%82" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a class="social-icon instagram" href="https://www.instagram.com/wilmerdelgadocieza" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <!-- Menú lateral -->
+    <nav id="sidebar-menu" class="sidebar">
+        <h2>🎼 DJ WILMER</h2>
+        <ul>
+            <li><a href="#" class="menu-item" id="menu-inicio"><i class="fas fa-home"></i> INICIO</a></li>
+            <li><a href="https://wilmerdelgadocieza.blogspot.com/" target="_blank" class="menu-item"><i class="fas fa-star"></i> VALORAR</a></li>
+            <li><a href="https://api.whatsapp.com/send?phone=51980634177&text=%F0%9F%99%82" target="_blank" class="menu-item"><i class="fas fa-shopping-bag"></i> PEDIDOS</a></li>
+            <li><a href="javascript:void(0);" class="menu-item" id="menu-chat"><i class="fas fa-comments"></i> CHAT</a></li>
+            <li><a href="https://wilmerdelgadocieza.blogspot.com" target="_blank" class="menu-item"><i class="fas fa-globe"></i> WEB</a></li>
+            <li><a href="javascript:void(0);" class="menu-item" id="menu-privacidad"><i class="fas fa-lock"></i> PRIVACIDAD</a></li>
+            <li><a href="javascript:void(0);" class="menu-item" id="menu-instalar"><i class="fas fa-download"></i> INSTALAR</a></li>
+        </ul>
+
+        <!-- Temas -->
+        <div class="menu-section">
+            <h3>🎨 TEMA</h3>
+            <div class="theme-grid" id="theme-grid">
+                <button class="theme-dot" data-theme="fuego" title="Fuego" style="background:#ff5722"></button>
+                <button class="theme-dot" data-theme="neon" title="Neón" style="background:#00e676"></button>
+                <button class="theme-dot" data-theme="violeta" title="Violeta" style="background:#9c27b0"></button>
+                <button class="theme-dot" data-theme="oceano" title="Océano" style="background:#00bcd4"></button>
+                <button class="theme-dot" data-theme="oro" title="Oro" style="background:#ffb300"></button>
+                <button class="theme-dot" data-theme="rosa" title="Rosa" style="background:#ff4081"></button>
+            </div>
+            <p id="theme-name" class="theme-name">Tema Fuego</p>
+        </div>
+
+        <!-- Efectos -->
+        <div class="menu-section">
+            <h3>✨ EFECTOS</h3>
+            <label class="fx-row">
+                <span>Partículas</span>
+                <input type="checkbox" id="fx-particles" checked>
+            </label>
+            <label class="fx-row">
+                <span>Ecualizador</span>
+                <input type="checkbox" id="fx-equalizer" checked>
+            </label>
+            <label class="fx-row">
+                <span>Brillo neón</span>
+                <input type="checkbox" id="fx-neon" checked>
+            </label>
+        </div>
+    </nav>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- Chat en vivo -->
+    <div id="chat-section" class="overlay-section">
+        <div class="section-inner">
+            <h2>💬 Chat en Vivo</h2>
+            <div id="chat-box"></div>
+            <div class="chat-input-row">
+                <input id="chat-input" type="text" placeholder="Escribe tu mensaje..." maxlength="200">
+                <button onclick="enviarMensaje()" class="btn-primary">Enviar</button>
+            </div>
+            <div class="center">
+                <button onclick="cerrarChat()" class="btn-danger">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Políticas de privacidad -->
+    <div id="privacy-section" class="overlay-section">
+        <div class="section-inner">
+            <h2>🔒 Políticas de Privacidad</h2>
+            <div class="privacy-text">
+                <p><strong>Última actualización:</strong> OCTUBRE 2026</p>
+                <p>DJ Wilmer valora y respeta tu privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos la información que tú nos proporcionas al utilizar nuestra aplicación y sitio web.</p>
+                <h3>1. Información que recopilamos</h3>
+                <p>Nuestra app y sitio web <strong>no recopilan información personal sensible</strong>. Sin embargo, podemos recopilar de forma automática datos básicos como:</p>
+                <ul>
+                    <li>Tipo de dispositivo y sistema operativo</li>
+                    <li>País o región aproximada (por estadísticas)</li>
+                    <li>Hora de acceso y duración de uso</li>
+                    <li>Información de uso del reproductor de radio</li>
+                </ul>
+                <h3>2. Uso de la información</h3>
+                <p>La información recolectada se usa únicamente para:</p>
+                <ul>
+                    <li>Mejorar la experiencia del usuario</li>
+                    <li>Analizar estadísticas de uso</li>
+                    <li>Mostrar contenido de forma más eficiente</li>
+                </ul>
+                <p><strong>Nunca vendemos ni compartimos tu información personal.</strong></p>
+                <h3>3. Cookies y tecnologías similares</h3>
+                <p>En nuestro sitio web (Blogspot), pueden usarse cookies gestionadas por Blogger y Google para análisis y personalización. Puedes gestionarlas en la configuración de tu navegador.</p>
+                <h3>4. Servicios de terceros</h3>
+                <p>Nuestra app o sitio web puede contener enlaces o integraciones con servicios como:</p>
+                <ul>
+                    <li>Reproductores de radio online</li>
+                    <li>Redes sociales (Facebook, Instagram, etc.)</li>
+                    <li>Plataforma de chat en vivo</li>
+                </ul>
+                <p>Estos servicios tienen sus propias políticas de privacidad.</p>
+                <h3>5. Derechos del usuario</h3>
+                <p>Tienes derecho a:</p>
+                <ul>
+                    <li>Saber qué datos se recopilan</li>
+                    <li>Solicitar la eliminación de tus datos (si corresponde)</li>
+                    <li>Contactarnos para cualquier duda</li>
+                </ul>
+                <h3>6. Contacto</h3>
+                <p>Si tienes preguntas sobre esta política, puedes contactarnos en:</p>
+                <p><strong>📧 wilmerdelgadocieza@gmail.com</strong></p>
+            </div>
+            <div class="center">
+                <button onclick="cerrarPrivacidad()" class="btn-danger">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de instalación -->
+    <div id="toast"></div>
+
+    <audio crossorigin="anonymous" id="radio" preload="none" src="https://icecast.crispro941.cl/8006/stream"></audio>
+
+    <script src="app.js"></script>
+    <script src="sw-register.js"></script>
+</body>
+</html>
