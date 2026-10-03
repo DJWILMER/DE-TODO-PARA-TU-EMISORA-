@@ -1,7 +1,7 @@
 /* ===== DJ WILMER EN VIVO - App logic ===== */
 
-const STREAM_URL = "https://icecast.crispro941.cl/8006/stream";
-const STATUS_URL = "https://icecast.crispro941.cl/cp/get_info.php?p=8006";
+const STREAM_URL = "https://stream.zeno.fm/zzrxpmz2mv8uv";
+const STATUS_URL = "https://api.zeno.fm/mounts/metadata/subscribe/zzrxpmz2mv8uv";
 const ORIGINAL_LOGO = "icons/icon-512.png";
 
 // Elementos
